@@ -1,9 +1,9 @@
 -module(slave).
 -export([loop/1]).
 
-loop(_Params) ->
+loop(Params) ->
     receive
         {status, Pid} ->
             Pid ! {status, "i am ok"},
-            loop(_Params)
+            loop(Params)
     end.
