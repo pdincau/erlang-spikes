@@ -25,9 +25,7 @@ loop(Procs) ->
             io:format("Added process with name ~p and pid: ~p~n", [Name, Pid]),
             loop([{Name, Pid}|Procs]);
         {monitor, Name} ->
-            io:format("Procs are: ~p~n", [Procs]),
             Pid = proplists:get_value(Name, Procs),
-            io:format("Here you must contact process with name ~p and pid: ~p~n", [Name, Pid]),
             Pid ! {status, self()},
             loop(Procs);
         {status, Status} ->
